@@ -4894,6 +4894,7 @@ export interface ProductInterface {
   coating_weight?: Maybe<Scalars['String']>;
   packaging_dimensions: Maybe<Scalars['String']>;
   custom_attributes?: Maybe<Array<Maybe<Website>>>;
+  additional_info?: Maybe<Scalars['String']>;
 }
 /** The ProductInterface contains attributes that are common to all types of products. Note that descriptions may not be available for custom and EAV attributes. */
 export interface ProductInterfaceReviewsArgs {

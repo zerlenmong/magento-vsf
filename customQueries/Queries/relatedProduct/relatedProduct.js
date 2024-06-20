@@ -1,4 +1,4 @@
-//  ~/customerQueries/Queries/relatedProduct.js
+//  ~/customerQueries/Queries/relatedProduct/relatedProduct.js
 const gql = require('graphql-tag');
 
 module.exports = ({ variables }) => ({
