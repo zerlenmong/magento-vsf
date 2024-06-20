@@ -36,6 +36,9 @@
       </SfBannerGrid>
     </LazyHydrate>
     <LoadWhenVisible>
+       <div v-for="banner in cBanners "> {{ banner }}</div>
+    </LoadWhenVisible>
+    <LoadWhenVisible>
       <NewProducts
         class="products"
         :button-text="$t('See more')"
@@ -80,6 +83,7 @@ import HeroSection from '~/components/HeroSection.vue';
 import { getMetaInfo } from '~/helpers/getMetaInfo';
 import { useContent } from '~/composables';
 import LoadWhenVisible from '~/components/utils/LoadWhenVisible.vue';
+import { useBanner } from '~/customQueries/useBanner';
 
 export default defineComponent({
   name: 'HomePage',
@@ -101,7 +105,8 @@ export default defineComponent({
     const { app } = useContext();
     const year = new Date().getFullYear();
     const { isDesktop } = app.$device;
-
+    const { loadBanners } = useBanner();
+    const cBanners = ref(null);
     const page = ref<CmsPage | null>(null);
     const hero = ref({
       title: app.i18n.t('Colorful summer dresses are already in store'),
@@ -204,6 +209,10 @@ export default defineComponent({
       page.value = await loadPage({ identifier: 'home' });
     });
 
+    useFetch(async () => {
+      cBanners.value = await loadBanners({ sliderId: 1 });
+    });
+
     onMounted(() => {
       addTags([{ prefix: CacheTagPrefix.View, value: 'home' }]);
     });
@@ -211,6 +220,7 @@ export default defineComponent({
     // @ts-ignore
     return {
       banners,
+      cBanners,
       callToAction,
       hero,
       page,

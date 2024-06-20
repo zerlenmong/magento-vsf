@@ -1,6 +1,6 @@
 import type { Ref } from '@nuxtjs/composition-api';
-import type { ComposableFunctionArgs } from '~/composables/types';
 import type { Maybe } from '~/modules/GraphQL/types';
+import type { ComposableFunctionArgs } from '~/composables';
 
 /** upload Files information */
 export interface UploadFilesInput {
@@ -83,5 +83,5 @@ export interface UseUploadInterface {
    * }
    * ```
    */
-  uploadFiles(params: { files: { base64_encoded_file: string | ArrayBuffer; name: String }[] }): Promise<UploadOutput>;
+  uploadFiles(params: ComposableFunctionArgs<UploadFilesInput>): Promise<UploadOutput>;
 }

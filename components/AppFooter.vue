@@ -35,6 +35,7 @@
           :key="item"
         >
           <SfMenuItem
+            link="contactUs"
             :label="$t(item)"
           />
         </SfListItem>
